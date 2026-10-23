@@ -1,0 +1,22 @@
+body {
+	margin: 0;
+	overflow: hidden;
+	background: #1a1a2e;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+canvas {
+	display: block;
+	background: #0d0d1a;
+	border-radius: 8px;
+}
+
+#info {
+	font-size: 12px;
+	margin-top: 10px;
+	text-align: center;
+}
