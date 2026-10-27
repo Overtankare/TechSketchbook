@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="/assets/js/aframe.min-1.8.0.js"></script>
+		<script src="/assets/js/aframe-physics-system.min-4.2.4.js"></script>
+		<script src="/assets/js/aframe-extras.min-7.7.0.js"></script>
+		<title>VR things</title>
+	</head>
+	<body>
+		<a-scene>
+			<a-assets>
+				<img id="rusty-metal-ground" src="/assets/images/rusty_metal_04_diff_4k.jpg">
+				<img id="metal-plate" src="/assets/images/metal_plate_diff_4k.jpg">
+				<img id="metal-tiles" src="/assets/images/metal_plate_02_diff_4k.jpg">
+				<img id="dark-stones" src="/assets/images/dark_rock_diff_4k.jpg">
+			</a-assets>
+			<a-box position="0 1 -2" rotation="45 45 45" src="#dark-stones" dynamic-body="mass: 1"></a-box>
+			<a-sphere position="0 25 -5" radius="2.5" src="#metal-plate" dynamic-body="mass: 1"></a-sphere>
+			<a-cylinder position="1 2 -3" radius="0.75" height="1.5" src="#metal-tiles" dynamic-body="mass: 1"></a-cylinder>
+			<a-plane position="0 0 0" rotation="-90 0 0" width="400" height="400" src="#rusty-metal-ground" repeat="100 100" static-body></a-plane>
+			<a-torus color="#8fa1a0" radius="2.5" radius-tubular="0.25" rotation="15 4 15" position="5 3 -1" dynamic-body="mass: 0.5"></a-torus>
+			<a-sky color="#ECECEC"></a-sky>
+		</a-scene>
+	</body>
+</html>
