@@ -2,25 +2,1201 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<title>VR Maze</title>
 		<script src="/assets/js/aframe.min-1.8.0.js"></script>
-		<script src="/assets/js/aframe-physics-system.min-4.2.4.js"></script>
 		<script src="/assets/js/aframe-extras.min-7.7.0.js"></script>
-		<title>VR things</title>
+		<script src="/assets/js/aframe-inspector-plugin-recast.min.js"></script>
+		<script src="script.js"></script>
 	</head>
 	<body>
-		<a-scene>
+		<a-scene timer background="color: skyblue" inspector-plugin-recast light="defaultLightsEnabled: false">
 			<a-assets>
-				<img id="rusty-metal-ground" src="/assets/images/rusty_metal_04_diff_4k.jpg">
-				<img id="metal-plate" src="/assets/images/metal_plate_diff_4k.jpg">
-				<img id="metal-tiles" src="/assets/images/metal_plate_02_diff_4k.jpg">
-				<img id="dark-stones" src="/assets/images/dark_rock_diff_4k.jpg">
+				<a-image id="floor" src="/assets/images/metal_plate_diff_4k.jpg"></a-image>
+				<a-asset-item id="maze" src="/assets/models/maze.glb"></a-asset-item>
+				<a-asset-item id="mesh" src="/assets/models/maze-navmesh.gltf"></a-asset-item>
+				<a-asset-item id="torch" src="/assets/models/torch.gltf"></a-asset-item>
+				<a-asset-item id="fire" src="/assets/models/fire.gltf"></a-asset-item>
+				<audio id="crackling" src="/assets/sounds/crackling.mp3" preload="auto"></audio>
 			</a-assets>
-			<a-box position="0 1 -2" rotation="45 45 45" src="#dark-stones" dynamic-body="mass: 1"></a-box>
-			<a-sphere position="0 25 -5" radius="2.5" src="#metal-plate" dynamic-body="mass: 1"></a-sphere>
-			<a-cylinder position="1 2 -3" radius="0.75" height="1.5" src="#metal-tiles" dynamic-body="mass: 1"></a-cylinder>
-			<a-plane position="0 0 0" rotation="-90 0 0" width="400" height="400" src="#rusty-metal-ground" repeat="100 100" static-body></a-plane>
-			<a-torus color="#8fa1a0" radius="2.5" radius-tubular="0.25" rotation="15 4 15" position="5 3 -1" dynamic-body="mass: 0.5"></a-torus>
-			<a-sky color="#ECECEC"></a-sky>
+			<a-entity gltf-model="#mesh" nav-mesh position="0 -0.1 0" visible="false"></a-entity>
+			<a-entity gltf-model="#maze" position="0 0 0"></a-entity>
+
+			<!--TORCH SECTION (i have too many)-->
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-0.99 1.5 24.75">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-1.5 1.5 25.005" rotation="0 -90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-1.5 1.5 24.48" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="0.99 1.5 24.75" rotation="0 180 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1.5 1.5 25.005" rotation="0 -90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					 intensity: 15;
+					 distance: 5;
+					 decay: 1;
+					 color: orange;"
+					 position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1.5 1.5 24.480" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-3.5 1.5 22.485" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-6.99 1.5 20.75" rotation="0 0 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-7.2 1.5 18.49" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-9.25 1.5 16.49" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-7 1.5 14.49" rotation="0 90 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-10.98 1.5 11.75" rotation="0 0 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-14.98 1.5 6" rotation="0 0 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-10.98 1.5 7.5" rotation="0 0 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+			</a-entity>
+
+			<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-8.47 1.5 9.5" rotation="0 0 0">
+				<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+				<a-entity light="type: point;
+					intensity: 15;
+					distance: 5;
+					decay: 1;
+					color: orange;"
+					position="20 45 0">
+				</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-6.75 1.5 8.51" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-3.51 1.5 7.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-4 1.5 16.485" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-2.25 1.5 18.47" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-2.995 1.5 10.5" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1 1.5 20.49" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="3.75 1.5 17.02" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="8.485 1.5 20" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="5.75 1.5 13.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-0.99 1.5 15.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="6.15 1.5 24.48" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="16.495 1.5 21.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="10.75 1.5 21.01" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="13.5 1.5 23.025" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="14.5 1.5 17.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="15.05 1.5 15.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="9.25 1.5 15.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="5.75 1.5 9.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1.005 1.5 11.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1 1.5 7.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				idecay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="8.485 1.5 5.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="3.005 1.5 5.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="6.75 1.5 3.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="9.005 1.5 4.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="11.004 1.5 6.5" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="15 1.5 4.495" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="20.495 1.5 5.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.005 1.5 5.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.005 1.5 -5.25" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="21.005 1.5 -1.25" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="8.75 1.5 -1.005" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="10.5 1.5 0.495" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="15.005 1.5 0.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="17.005 1.5 -5" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="17.250 1.5 -10.995" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="15.25 1.5 -12.995" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="11.75 1.5 -7.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="19.75 1.5 -5.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="5.005 1.5 -8.25" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="9.505 1.5 -13" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="21.75 1.5 6.505" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.005 1.5 -13.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="22 1.5 -7.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="20.495 1.5 21.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="22.495 1.5 20" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="24.495 1.5 23.5" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="22.495 1.5 14" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="20.495 1.5 16.5" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-7.505 1.5 23.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.5 1.5 9.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.005 1.5 14" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="16.495 1.5 10.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="17.75 1.5 11.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="7.5 1.5 -5.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="13.5 1.5 -4.996" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="23.005 1.5 -18.75" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="15.25 1.5 -23.005" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="22.75 1.5 -23.005" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="14.25 1.5 -15.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="12.995 1.5 -18.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="18.5 1.5 -20.495" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="22.495 1.5 -17.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="12.75 1.5 13.005" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="17.005 1.5 9.25" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="2.75 1.5 -1.495" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="7.25 1.5 -18.995" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="8.5 1.5 -23.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-1 1.5 -23.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="1.75 1.5 -13.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-2.995 1.5 -12.5" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-7.75 1.5 -23.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-11.45 1.5 -19.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-21.25 1.5 -23.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-23.005 1.5 -20" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-22.25 1.5 -13.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-15.505 1.5 -18.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-15.25 1.5 -13.005" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-11.505 1.5 -9" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-5.505 1.5 -9.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-3 1.5 -5.495" rotation="0 -90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-3.495 1.5 2" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-8.995 1.5 2" rotation="0 0 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-8.75 1.5 -3.505" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-13.25 1.5 0.495" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-17.25 1.5 0.995" rotation="0 90 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-21.005 1.5 1.25" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-19.505 1.5 -3.5" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-21.505 1.5 6.5" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-23.005 1.5 12.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#torch" scale="0.01 0.01 0.01" position="-15.005 1.5 12.75" rotation="0 180 0">
+			<a-entity gltf-model="#fire" position="20 60 1.15" scale="3 3 3" rotation="0 90 0" animation-mixer sound="src: #crackling; autoplay: true; loop: true; positional: true"></a-entity>
+			<a-entity light="type: point;
+				intensity: 15;
+				distance: 5;
+				decay: 1;
+				color: orange;"
+				position="20 45 0">
+			</a-entity>
+		</a-entity>
+
+		<!--END TORCH SECTION (yeah that's too many)-->
+
+			<a-plane src="#floor"
+				repeat="60 60 1"	
+				rotation="-90 0 0"
+				width="60"
+				height="60"
+				position="0 0.25 0">
+			</a-plane>
+			<a-entity
+					id="player"
+					movement-controls="speed: 0.3; constrainToNavMesh: true;"
+					position="0 0 27.5">
+				<a-entity camera
+					position="0 1.6 0"
+					look-controls>
+					<a-text id="score" position="-0.25 0.15 -0.2" color="red" scale="0.1 0.1 0.1" value="Ready"></a-text>
+				</a-entity>
+			</a-entity>
 		</a-scene>
 	</body>
 </html>
